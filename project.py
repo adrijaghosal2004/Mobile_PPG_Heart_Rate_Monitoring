@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 import pandas as pd
+import os
 
 # Function to break the video into images
 def break_video_into_images(video_path, image_width, image_height):
@@ -136,3 +137,16 @@ plt.title('Pixel Value over Frame Number')
 
 # Display the graph
 plt.show()
+
+
+def delete_generated_images(frame_count):
+    for frame in range(frame_count):
+        image_path = f"image_{frame}.jpg"
+        try:
+            os.remove(image_path)
+            print(f"Deleted: {image_path}")
+        except FileNotFoundError:
+            print(f"File not found: {image_path}")
+
+# Call the function to delete the generated images
+delete_generated_images(frame_count)
